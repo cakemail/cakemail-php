@@ -8,9 +8,9 @@
     }
   ],
   "require": {
-    "php" : "7.0",
-    "twig/twig":"^3.0",
-    "guzzlehttp/guzzle": "7.0"
+    "php" : "^7.0",
+    "twig/twig":"2.12.5",
+    "guzzlehttp/guzzle": "6.5.5"
   },
   "autoload": {
     "psr-4": {
