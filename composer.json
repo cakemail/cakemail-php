@@ -1,0 +1,23 @@
+{
+  "name": "cakemail/cakemail-php",
+  "description": "An object oriented client for the Cakemail's API Next-Gen",
+  "authors": [
+    {
+      "name": "Cakemail Inc.",
+      "email": "support@cakemail.com"
+    }
+  ],
+  "require": {
+    "php" : "7.0",
+    "twig/twig":"^3.0",
+    "guzzlehttp/guzzle": "7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cakemail\\":"src/",
+      "Cakemail\\Lib\\": "libs/openapi/lib/",
+      "Cakemail\\Lib\\Model\\": "libs/openapi/lib/Model",
+      "Cakemail\\Lib\\Api\\": "libs/openapi/lib/Api"
+    }
+  }
+}
