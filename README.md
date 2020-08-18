@@ -3,7 +3,7 @@
 Install the `cakemail` package using `composer`
 
 ```bash
-$ composer require cakemail/api-client
+$ composer require cakemail/cakemail
 ```
 
 # Usage
