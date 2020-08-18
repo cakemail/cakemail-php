@@ -15,6 +15,7 @@
   "autoload": {
     "psr-4": {
       "Cakemail\\":"src/",
+      "Cakemail\\Subapis\\": "src/subapis",
       "Cakemail\\Lib\\": "libs/openapi/lib/",
       "Cakemail\\Lib\\Model\\": "libs/openapi/lib/Model",
       "Cakemail\\Lib\\Api\\": "libs/openapi/lib/Api"
