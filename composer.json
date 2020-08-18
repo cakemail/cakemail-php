@@ -1,5 +1,5 @@
 {
-  "name": "cakemail/cakemail-php",
+  "name": "cakemail/cakemail",
   "description": "An object oriented client for the Cakemail's API Next-Gen",
   "authors": [
     {
