@@ -1,6 +1,6 @@
 {
   "name": "cakemail/cakemail",
-  "description": "An object oriented client for the Cakemail's API Next-Gen",
+  "description": "A simple client to get started with Cakemail Next-gen API",
   "authors": [
     {
       "name": "Cakemail Inc.",
