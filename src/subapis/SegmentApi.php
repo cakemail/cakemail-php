@@ -170,7 +170,7 @@ class SegmentApi
     }
 
     /**
-     * Operation patch
+     * Operation update
      *
      * Update a segment
      *
@@ -185,7 +185,7 @@ class SegmentApi
      * @throws \InvalidArgumentException
      * @return \Cakemail\Lib\Model\PatchSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
      */
-    public function patch($params)
+    public function update($params)
     {
         if (gettype($params) != 'array' && gettype($params) != 'NULL') {
             throw new ApiException('Parameter must be an array');

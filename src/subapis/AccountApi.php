@@ -57,7 +57,7 @@ class AccountApi
     }
 
     /**
-     * Operation patchSelf
+     * Operation updateSelf
      *
      * Update my account
      *
@@ -69,7 +69,7 @@ class AccountApi
      * @throws \InvalidArgumentException
      * @return \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
      */
-    public function patchSelf($params)
+    public function updateSelf($params)
     {
         if (gettype($params) != 'array' && gettype($params) != 'NULL') {
             throw new ApiException('Parameter must be an array');

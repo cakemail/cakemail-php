@@ -226,7 +226,7 @@ class CampaignApi
     }
 
     /**
-     * Operation patch
+     * Operation update
      *
      * Update a campaign
      *
@@ -240,7 +240,7 @@ class CampaignApi
      * @throws \InvalidArgumentException
      * @return \Cakemail\Lib\Model\PatchCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
      */
-    public function patch($params)
+    public function update($params)
     {
         if (gettype($params) != 'array' && gettype($params) != 'NULL') {
             throw new ApiException('Parameter must be an array');
