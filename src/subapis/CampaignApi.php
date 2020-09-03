@@ -199,7 +199,7 @@ class CampaignApi
      *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
      *                      int <b>$account_id</b> account_id (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;name&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
-     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;created_on&#x60;   - &#x60;scheduled_for&#x60;   - &#x60;scheduled_on&#x60;   - &#x60;type&#x60; (optional)<br>
+     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;created_on&#x60;   - &#x60;scheduled_for&#x60;   - &#x60;scheduled_on&#x60;   - &#x60;updated_on&#x60;   - &#x60;type&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -223,6 +223,42 @@ class CampaignApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->listCampaigns($allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['account_id']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
+    }
+
+    /**
+     * Operation listLinks
+     *
+     * Show a campaign links
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$campaign_id</b> campaign_id (required)<br>
+     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$page</b> page (optional, default to 1)<br>
+     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Cakemail\Lib\Model\LinksResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     */
+    public function listLinks($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'page' => ['value' => "1", 'isOptional' => true],
+                        'per_page' => ['value' => "50", 'isOptional' => true],
+                        'with_count' => ['value' => "false", 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->listLinks($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 
     /**

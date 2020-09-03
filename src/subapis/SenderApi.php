@@ -44,9 +44,7 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      string <b>$sender_id</b> sender_id (required)<br>
      *                      \Cakemail\Lib\Model\ConfirmSender <b>$confirm_sender</b> confirm_sender (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -59,14 +57,12 @@ class SenderApi
         }
 
         $allParams = [
-                        'sender_id' => ['value' => null, 'isOptional' => false],
                         'confirm_sender' => ['value' => null, 'isOptional' => false],
-                        'account_id' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->confirmSender($allParams['sender_id']['value'], $allParams['confirm_sender']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->confirmSender($allParams['confirm_sender']['value']));
     }
 
     /**
@@ -225,5 +221,35 @@ class SenderApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->patchSender($allParams['sender_id']['value'], $allParams['update_sender']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation resendConfirmationEmail
+     *
+     * Resend confirmation email
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$sender_id</b> sender_id (required)<br>
+     *                      int <b>$account_id</b> account_id (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Cakemail\Lib\Model\ResendConfirmationEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     */
+    public function resendConfirmationEmail($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'sender_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->resendConfirmationEmail($allParams['sender_id']['value'], $allParams['account_id']['value']));
     }
 }

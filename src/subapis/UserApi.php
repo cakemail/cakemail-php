@@ -98,6 +98,34 @@ class UserApi
     }
 
     /**
+     * Operation forgotMyPassword
+     *
+     * Forgot my password
+     *
+     *
+     * @param mixed[] $params
+     *                      \Cakemail\Lib\Model\ForgotMyPassword <b>$forgot_my_password</b> forgot_my_password (required)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Cakemail\Lib\Model\ResetPasswordResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     */
+    public function forgotMyPassword($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'forgot_my_password' => ['value' => null, 'isOptional' => false],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->forgotMyPassword($allParams['forgot_my_password']['value']));
+    }
+
+    /**
      * Operation getSelf
      *
      * Show my user details
@@ -212,6 +240,53 @@ class UserApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->patchUser($allParams['user_id']['value'], $allParams['patch_user']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation resetPasswordConfirm
+     *
+     * Reset password confirmation
+     *
+     *
+     * @param mixed[] $params
+     *                      \Cakemail\Lib\Model\ResetPasswordConfirm <b>$reset_password_confirm</b> reset_password_confirm (required)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Cakemail\Lib\Model\ResetPasswordConfirmResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     */
+    public function resetPasswordConfirm($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'reset_password_confirm' => ['value' => null, 'isOptional' => false],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->resetPasswordConfirm($allParams['reset_password_confirm']['value']));
+    }
+
+    /**
+     * Operation resetSelfPassword
+     *
+     * Reset my password
+     *
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Cakemail\Lib\Model\ResetPasswordResponse|\Cakemail\Lib\Model\HTTPBadRequestError
+     */
+    public function resetSelfPassword()
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        return new Response($this->openApiObj->resetSelfPassword());
     }
 
     /**
