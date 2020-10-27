@@ -38,18 +38,48 @@ class SubAccountApi
 
 
     /**
+     * Operation confirm
+     *
+     * Confirm sub-account creation
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$account_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\ConfirmAccount <b>$confirm_account</b> (required)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\ConfirmAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function confirm($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'account_id' => ['value' => null, 'isOptional' => false],
+                        'confirm_account' => ['value' => null, 'isOptional' => false],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->confirmAccountWithHttpInfo($allParams['account_id']['value'], $allParams['confirm_account']['value']));
+    }
+
+    /**
      * Operation create
      *
      * Create a sub-account
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\CreateAccount <b>$create_account</b> create_account (required)<br>
-     *                      int <b>$partner_account_id</b> partner_account_id (optional)<br>
+     *                      \Cakemail\Lib\Model\CreateAccount <b>$create_account</b> (required)<br>
+     *                      int <b>$partner_account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -64,7 +94,7 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createAccount($allParams['create_account']['value'], $allParams['partner_account_id']['value']));
+        return new Response($this->openApiObj->createAccountWithHttpInfo($allParams['create_account']['value'], $allParams['partner_account_id']['value']));
     }
 
     /**
@@ -74,11 +104,11 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
+     *                      string <b>$account_id</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -92,7 +122,7 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteAccount($allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteAccountWithHttpInfo($allParams['account_id']['value']));
     }
 
     /**
@@ -102,11 +132,11 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
+     *                      string <b>$account_id</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function get($params)
     {
@@ -120,7 +150,7 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getAccount($allParams['account_id']['value']));
+        return new Response($this->openApiObj->getAccountWithHttpInfo($allParams['account_id']['value']));
     }
 
     /**
@@ -130,17 +160,17 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$partner_account_id</b> partner_account_id (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
-     *                      bool <b>$recursive</b> recursive (optional, default to false)<br>
+     *                      int <b>$partner_account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *                      bool <b>$recursive</b> (optional, default to false)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;created_on&#x60; (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;name&#x60;   - &#x60;status&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\AccountsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params = [])
     {
@@ -160,7 +190,7 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listAccounts($allParams['partner_account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['recursive']['value'], $allParams['sort']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->listAccountsWithHttpInfo($allParams['partner_account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['recursive']['value'], $allParams['sort']['value'], $allParams['filter']['value']));
     }
 
     /**
@@ -170,12 +200,12 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
-     *                      \Cakemail\Lib\Model\PatchAccount <b>$patch_account</b> patch_account (required)<br>
+     *                      int <b>$account_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\PatchAccount <b>$patch_account</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function update($params)
     {
@@ -190,7 +220,35 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchAccount($allParams['account_id']['value'], $allParams['patch_account']['value']));
+        return new Response($this->openApiObj->patchAccountWithHttpInfo($allParams['account_id']['value'], $allParams['patch_account']['value']));
+    }
+
+    /**
+     * Operation resendVerification
+     *
+     * Resend the account verification email
+     *
+     *
+     * @param mixed[] $params
+     *                      \Cakemail\Lib\Model\ResendVerificationEmail <b>$resend_verification_email</b> (required)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\ResendAccountVerificationEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function resendVerification($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'resend_verification_email' => ['value' => null, 'isOptional' => false],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->resendAccountVerificationWithHttpInfo($allParams['resend_verification_email']['value']));
     }
 
     /**
@@ -200,11 +258,11 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
+     *                      int <b>$account_id</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SuspendAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SuspendAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function suspend($params)
     {
@@ -218,7 +276,7 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->suspendAccount($allParams['account_id']['value']));
+        return new Response($this->openApiObj->suspendAccountWithHttpInfo($allParams['account_id']['value']));
     }
 
     /**
@@ -228,11 +286,11 @@ class SubAccountApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
+     *                      int <b>$account_id</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\UnsuspendAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\UnsuspendAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function unsuspend($params)
     {
@@ -246,6 +304,6 @@ class SubAccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->unsuspendAccount($allParams['account_id']['value']));
+        return new Response($this->openApiObj->unsuspendAccountWithHttpInfo($allParams['account_id']['value']));
     }
 }

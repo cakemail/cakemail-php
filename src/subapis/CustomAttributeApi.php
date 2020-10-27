@@ -44,13 +44,13 @@ class CustomAttributeApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      \Cakemail\Lib\Model\CreateCustomAttribute <b>$create_custom_attribute</b> create_custom_attribute (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\CreateCustomAttribute <b>$create_custom_attribute</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -66,7 +66,7 @@ class CustomAttributeApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createCustomAttribute($allParams['list_id']['value'], $allParams['create_custom_attribute']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createCustomAttributeWithHttpInfo($allParams['list_id']['value'], $allParams['create_custom_attribute']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -76,13 +76,13 @@ class CustomAttributeApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      string <b>$name</b> name (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      string <b>$name</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteCustomAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteCustomAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -98,7 +98,7 @@ class CustomAttributeApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteCustomAttribute($allParams['list_id']['value'], $allParams['name']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteCustomAttributeWithHttpInfo($allParams['list_id']['value'], $allParams['name']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -108,13 +108,13 @@ class CustomAttributeApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      string <b>$name</b> name (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      string <b>$name</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CustomAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CustomAttributeResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function get($params)
     {
@@ -130,7 +130,7 @@ class CustomAttributeApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCustomAttribute($allParams['list_id']['value'], $allParams['name']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getCustomAttributeWithHttpInfo($allParams['list_id']['value'], $allParams['name']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -140,15 +140,15 @@ class CustomAttributeApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CustomAttributesResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CustomAttributesResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params)
     {
@@ -166,6 +166,6 @@ class CustomAttributeApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listCustomAttributes($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listCustomAttributesWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 }

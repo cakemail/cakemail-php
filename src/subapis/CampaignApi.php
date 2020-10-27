@@ -44,12 +44,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ArchiveCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ArchiveCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function archive($params)
     {
@@ -64,7 +64,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->archiveCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->archiveCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -74,12 +74,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CancelCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CancelCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function cancel($params)
     {
@@ -94,7 +94,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->cancelCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->cancelCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -104,12 +104,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\CreateCampaign <b>$create_campaign</b> create_campaign (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      \Cakemail\Lib\Model\CreateCampaign <b>$create_campaign</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -124,7 +124,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createCampaign($allParams['create_campaign']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createCampaignWithHttpInfo($allParams['create_campaign']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -134,12 +134,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -154,7 +154,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -164,12 +164,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function get($params)
     {
@@ -184,7 +184,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -194,16 +194,16 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;name&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;created_on&#x60;   - &#x60;scheduled_for&#x60;   - &#x60;scheduled_on&#x60;   - &#x60;updated_on&#x60;   - &#x60;type&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CampaignsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CampaignsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params = [])
     {
@@ -222,7 +222,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listCampaigns($allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['account_id']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
+        return new Response($this->openApiObj->listCampaignsWithHttpInfo($allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['account_id']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
     }
 
     /**
@@ -232,15 +232,15 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\LinksResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\LinksResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function listLinks($params)
     {
@@ -258,7 +258,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listLinks($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listLinksWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 
     /**
@@ -268,13 +268,13 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      \Cakemail\Lib\Model\PatchCampaign <b>$patch_campaign</b> patch_campaign (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\PatchCampaign <b>$patch_campaign</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\PatchCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function update($params)
     {
@@ -290,7 +290,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchCampaign($allParams['campaign_id']['value'], $allParams['patch_campaign']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['patch_campaign']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -300,13 +300,13 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$contact_id</b> contact_id (optional)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$contact_id</b> (optional)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\RenderCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\RenderCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function render($params)
     {
@@ -322,7 +322,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->renderCampaign($allParams['campaign_id']['value'], $allParams['contact_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->renderCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['contact_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -332,13 +332,13 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      \Cakemail\Lib\Model\ScheduleCampaign <b>$schedule_campaign</b> schedule_campaign (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      \Cakemail\Lib\Model\ScheduleCampaign <b>$schedule_campaign</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function reschedule($params)
     {
@@ -354,7 +354,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->rescheduleCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['schedule_campaign']['value']));
+        return new Response($this->openApiObj->rescheduleCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['schedule_campaign']['value']));
     }
 
     /**
@@ -364,12 +364,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ResumeCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ResumeCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function resume($params)
     {
@@ -384,7 +384,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->resumeCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->resumeCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -394,13 +394,13 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      \Cakemail\Lib\Model\ScheduleCampaign <b>$schedule_campaign</b> schedule_campaign (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      \Cakemail\Lib\Model\ScheduleCampaign <b>$schedule_campaign</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function schedule($params)
     {
@@ -416,7 +416,39 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->scheduleCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['schedule_campaign']['value']));
+        return new Response($this->openApiObj->scheduleCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['schedule_campaign']['value']));
+    }
+
+    /**
+     * Operation sendTestEmail
+     *
+     * Send a test email
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\SendTestEmail <b>$send_test_email</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\SendTestEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function sendTestEmail($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'send_test_email' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->sendTestEmailWithHttpInfo($allParams['campaign_id']['value'], $allParams['send_test_email']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -426,12 +458,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SuspendCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SuspendCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function suspend($params)
     {
@@ -446,7 +478,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->suspendCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->suspendCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -456,12 +488,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ArchiveCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ArchiveCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function unarchive($params)
     {
@@ -476,7 +508,7 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->unarchiveCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->unarchiveCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -486,12 +518,12 @@ class CampaignApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ScheduleCampaignResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function unschedule($params)
     {
@@ -506,6 +538,6 @@ class CampaignApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->unscheduleCampaign($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->unscheduleCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 }

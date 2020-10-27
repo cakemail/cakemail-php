@@ -45,7 +45,7 @@ class AccountApi
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError
+     * @return array of \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSelf()
     {
@@ -53,7 +53,7 @@ class AccountApi
             throw new ApiException('Parameter must be an array');
         }
 
-        return new Response($this->openApiObj->getSelfAccount());
+        return new Response($this->openApiObj->getSelfAccountWithHttpInfo());
     }
 
     /**
@@ -63,11 +63,11 @@ class AccountApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\PatchSelfAccount <b>$patch_self_account</b> patch_self_account (required)<br>
+     *                      \Cakemail\Lib\Model\PatchSelfAccount <b>$patch_self_account</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchAccountResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function updateSelf($params)
     {
@@ -81,6 +81,6 @@ class AccountApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchSelfAccount($allParams['patch_self_account']['value']));
+        return new Response($this->openApiObj->patchSelfAccountWithHttpInfo($allParams['patch_self_account']['value']));
     }
 }

@@ -44,11 +44,11 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\ConfirmSender <b>$confirm_sender</b> confirm_sender (required)<br>
+     *                      \Cakemail\Lib\Model\ConfirmSender <b>$confirm_sender</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ConfirmSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ConfirmSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function confirm($params)
     {
@@ -62,7 +62,7 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->confirmSender($allParams['confirm_sender']['value']));
+        return new Response($this->openApiObj->confirmSenderWithHttpInfo($allParams['confirm_sender']['value']));
     }
 
     /**
@@ -72,12 +72,12 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\CreateSender <b>$create_sender</b> create_sender (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      \Cakemail\Lib\Model\CreateSender <b>$create_sender</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -92,7 +92,7 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createSender($allParams['create_sender']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createSenderWithHttpInfo($allParams['create_sender']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -102,12 +102,12 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      string <b>$sender_id</b> sender_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      string <b>$sender_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -122,7 +122,7 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteSender($allParams['sender_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteSenderWithHttpInfo($allParams['sender_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -132,12 +132,12 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      string <b>$sender_id</b> sender_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      string <b>$sender_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function get($params)
     {
@@ -152,7 +152,7 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getSender($allParams['sender_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getSenderWithHttpInfo($allParams['sender_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -162,15 +162,15 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;email&#x60;   - &#x60;confirmed&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SendersResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SendersResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params = [])
     {
@@ -188,7 +188,7 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listSenders($allParams['page']['value'], $allParams['per_page']['value'], $allParams['account_id']['value'], $allParams['with_count']['value'], $allParams['sort']['value']));
+        return new Response($this->openApiObj->listSendersWithHttpInfo($allParams['page']['value'], $allParams['per_page']['value'], $allParams['account_id']['value'], $allParams['with_count']['value'], $allParams['sort']['value']));
     }
 
     /**
@@ -198,13 +198,13 @@ class SenderApi
      *
      *
      * @param mixed[] $params
-     *                      string <b>$sender_id</b> sender_id (required)<br>
-     *                      \Cakemail\Lib\Model\UpdateSender <b>$update_sender</b> update_sender (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      string <b>$sender_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\UpdateSender <b>$update_sender</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\PatchSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchSenderResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function update($params)
     {
@@ -220,24 +220,24 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchSender($allParams['sender_id']['value'], $allParams['update_sender']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchSenderWithHttpInfo($allParams['sender_id']['value'], $allParams['update_sender']['value'], $allParams['account_id']['value']));
     }
 
     /**
-     * Operation resendConfirmationEmail
+     * Operation resendConfirmation
      *
      * Resend confirmation email
      *
      *
      * @param mixed[] $params
-     *                      string <b>$sender_id</b> sender_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      string <b>$sender_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ResendConfirmationEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ResendConfirmationEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function resendConfirmationEmail($params)
+    public function resendConfirmation($params)
     {
         if (gettype($params) != 'array' && gettype($params) != 'NULL') {
             throw new ApiException('Parameter must be an array');
@@ -250,6 +250,6 @@ class SenderApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->resendConfirmationEmail($allParams['sender_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->resendConfirmationEmailWithHttpInfo($allParams['sender_id']['value'], $allParams['account_id']['value']));
     }
 }

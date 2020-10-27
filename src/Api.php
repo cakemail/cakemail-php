@@ -18,6 +18,7 @@ use Cakemail\Subapis\SegmentApi;
 use Cakemail\Subapis\SenderApi;
 use Cakemail\Subapis\SubAccountApi;
 use Cakemail\Subapis\SuppressedEmailApi;
+use Cakemail\Subapis\TemplateApi;
 use Cakemail\Subapis\TokenApi;
 use Cakemail\Subapis\TransactionalEmailApi;
 use Cakemail\Subapis\UserApi;
@@ -42,6 +43,7 @@ class Api
     public $sender;
     public $sub_account;
     public $suppressed_email;
+    public $template;
     public $token;
     public $transactional_email;
     public $user;
@@ -67,6 +69,7 @@ class Api
         $this->sender = new SenderApi(new Client(), $this->config);
         $this->sub_account = new SubAccountApi(new Client(), $this->config);
         $this->suppressed_email = new SuppressedEmailApi(new Client(), $this->config);
+        $this->template = new TemplateApi(new Client(), $this->config);
         $this->token = new TokenApi(new Client(), $this->config);
         $this->transactional_email = new TransactionalEmailApi(new Client(), $this->config);
         $this->user = new UserApi(new Client(), $this->config);

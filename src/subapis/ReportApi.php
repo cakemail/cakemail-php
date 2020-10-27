@@ -44,13 +44,13 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (required)<br>
-     *                      int <b>$start_time</b> start_time (required)<br>
-     *                      int <b>$end_time</b> end_time (required)<br>
+     *                      int <b>$account_id</b> (required)<br>
+     *                      int <b>$start_time</b> (required)<br>
+     *                      int <b>$end_time</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\AccountStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAccount($params)
     {
@@ -66,7 +66,7 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getAccountStats($allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value']));
+        return new Response($this->openApiObj->getAccountStatsWithHttpInfo($allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value']));
     }
 
     /**
@@ -76,18 +76,18 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$start_time</b> start_time (optional)<br>
-     *                      int <b>$end_time</b> end_time (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;unique&#x60;   - &#x60;total&#x60;   - &#x60;link&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CampaignLinksStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CampaignLinksStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCampaignLink($params)
     {
@@ -108,7 +108,7 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaignLinksStats($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['sort']['value']));
+        return new Response($this->openApiObj->getCampaignLinksStatsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['sort']['value']));
     }
 
     /**
@@ -118,12 +118,12 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CampaignStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CampaignStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCampaign($params)
     {
@@ -138,7 +138,7 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaignStats($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getCampaignStatsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -148,13 +148,13 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$start_time</b> start_time (required)<br>
-     *                      int <b>$end_time</b> end_time (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$start_time</b> (required)<br>
+     *                      int <b>$end_time</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\EmailStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\EmailStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmail($params)
     {
@@ -170,7 +170,7 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getEmailsStats($allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getEmailsStatsWithHttpInfo($allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -180,12 +180,12 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ListStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ListStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getList($params)
     {
@@ -200,7 +200,7 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getListStats($allParams['list_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getListStatsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -210,12 +210,12 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$start_time</b> start_time (required)<br>
-     *                      int <b>$end_time</b> end_time (required)<br>
+     *                      int <b>$start_time</b> (required)<br>
+     *                      int <b>$end_time</b> (required)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\AccountStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\AccountStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSelfAccount($params)
     {
@@ -230,6 +230,6 @@ class ReportApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getSelfAccountStats($allParams['start_time']['value'], $allParams['end_time']['value']));
+        return new Response($this->openApiObj->getSelfAccountStatsWithHttpInfo($allParams['start_time']['value'], $allParams['end_time']['value']));
     }
 }

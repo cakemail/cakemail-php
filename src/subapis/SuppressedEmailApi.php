@@ -44,12 +44,12 @@ class SuppressedEmailApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\SuppressedEmail <b>$suppressed_email</b> suppressed_email (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      \Cakemail\Lib\Model\SuppressedEmail <b>$suppressed_email</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateSuppressedEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateSuppressedEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -64,7 +64,7 @@ class SuppressedEmailApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createSuppressedEmail($allParams['suppressed_email']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createSuppressedEmailWithHttpInfo($allParams['suppressed_email']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -75,11 +75,11 @@ class SuppressedEmailApi
      *
      * @param mixed[] $params
      *                      string <b>$email</b> Full email, a local part wildcard or a domain wildcard. Examples: *@domain.com, john@*, john@domain.com (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteSuppressedEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteSuppressedEmailResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -94,7 +94,7 @@ class SuppressedEmailApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteSuppressedEmail($allParams['email']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteSuppressedEmailWithHttpInfo($allParams['email']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -104,14 +104,14 @@ class SuppressedEmailApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SuppressedEmailsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SuppressedEmailsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params = [])
     {
@@ -128,6 +128,6 @@ class SuppressedEmailApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listSuppressedEmails($allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listSuppressedEmailsWithHttpInfo($allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 }

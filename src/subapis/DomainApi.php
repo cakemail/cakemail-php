@@ -44,12 +44,12 @@ class DomainApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\PatchDomains <b>$patch_domains</b> patch_domains (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      \Cakemail\Lib\Model\PatchDomains <b>$patch_domains</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\PatchDomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchDomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function update($params)
     {
@@ -64,7 +64,7 @@ class DomainApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchDomains($allParams['patch_domains']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchDomainsWithHttpInfo($allParams['patch_domains']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -74,11 +74,11 @@ class DomainApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function show($params = [])
     {
@@ -92,7 +92,7 @@ class DomainApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->showDomains($allParams['account_id']['value']));
+        return new Response($this->openApiObj->showDomainsWithHttpInfo($allParams['account_id']['value']));
     }
 
     /**
@@ -102,11 +102,11 @@ class DomainApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ValidateDomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ValidateDomainsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function validate($params = [])
     {
@@ -120,6 +120,6 @@ class DomainApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->validateDomains($allParams['account_id']['value']));
+        return new Response($this->openApiObj->validateDomainsWithHttpInfo($allParams['account_id']['value']));
     }
 }

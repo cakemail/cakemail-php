@@ -44,13 +44,13 @@ class SegmentApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      \Cakemail\Lib\Model\Segment <b>$segment</b> segment (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\Segment <b>$segment</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CreateSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CreateSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function create($params)
     {
@@ -66,7 +66,7 @@ class SegmentApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createSegment($allParams['list_id']['value'], $allParams['segment']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createSegmentWithHttpInfo($allParams['list_id']['value'], $allParams['segment']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -76,13 +76,13 @@ class SegmentApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$segment_id</b> segment_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$segment_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\DeleteSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\DeleteSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function delete($params)
     {
@@ -98,7 +98,7 @@ class SegmentApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteSegment($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteSegmentWithHttpInfo($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -108,13 +108,13 @@ class SegmentApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$segment_id</b> segment_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$segment_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function get($params)
     {
@@ -130,7 +130,7 @@ class SegmentApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getSegment($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getSegmentWithHttpInfo($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['account_id']['value']));
     }
 
     /**
@@ -140,15 +140,15 @@ class SegmentApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\SegmentsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\SegmentsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function list($params)
     {
@@ -166,7 +166,7 @@ class SegmentApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listSegments($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listSegmentsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 
     /**
@@ -176,14 +176,14 @@ class SegmentApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$segment_id</b> segment_id (required)<br>
-     *                      \Cakemail\Lib\Model\UpdateSegment <b>$update_segment</b> update_segment (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$segment_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\UpdateSegment <b>$update_segment</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\PatchSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\PatchSegmentResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function update($params)
     {
@@ -200,6 +200,6 @@ class SegmentApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchSegment($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['update_segment']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchSegmentWithHttpInfo($allParams['list_id']['value'], $allParams['segment_id']['value'], $allParams['update_segment']['value'], $allParams['account_id']['value']));
     }
 }

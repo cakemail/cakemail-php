@@ -44,19 +44,19 @@ class LogApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$campaign_id</b> campaign_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$start_time</b> start_time (optional)<br>
-     *                      int <b>$end_time</b> end_time (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;additional_info&#x60;   - &#x60;link_id&#x60;   - &#x60;contact_id&#x60;   - &#x60;email&#x60;   - &#x60;uniques&#x60;   - &#x60;log_id&#x60;   - &#x60;totals&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;time&#x60;   - &#x60;log_id&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\CampaignLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\CampaignLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getCampaign($params)
     {
@@ -78,7 +78,7 @@ class LogApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaignLogs($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
+        return new Response($this->openApiObj->getCampaignLogsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
     }
 
     /**
@@ -88,18 +88,18 @@ class LogApi
      *
      *
      * @param mixed[] $params
-     *                      string <b>$log_type</b> log_type (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$start_time</b> start_time (optional)<br>
-     *                      int <b>$end_time</b> end_time (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      \Cakemail\Lib\Model\LogType <b>$log_type</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;group_id&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\EmailLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\EmailLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getEmail($params)
     {
@@ -120,7 +120,7 @@ class LogApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getEmailLogs($allParams['log_type']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->getEmailLogsWithHttpInfo($allParams['log_type']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
     }
 
     /**
@@ -130,18 +130,18 @@ class LogApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$list_id</b> list_id (required)<br>
-     *                      int <b>$account_id</b> account_id (optional)<br>
-     *                      int <b>$start_time</b> start_time (optional)<br>
-     *                      int <b>$end_time</b> end_time (optional)<br>
-     *                      int <b>$page</b> page (optional, default to 1)<br>
-     *                      int <b>$per_page</b> per_page (optional, default to 50)<br>
-     *                      bool <b>$with_count</b> with_count (optional, default to false)<br>
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;additional_info&#x60;   - &#x60;contact_id&#x60;   - &#x60;email&#x60;   - &#x60;uniques&#x60;   - &#x60;track_id&#x60;   - &#x60;log_id&#x60;   - &#x60;start_id&#x60;   - &#x60;end_id&#x60;   - &#x60;totals&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Cakemail\Lib\Model\ListLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError
+     * @return array of \Cakemail\Lib\Model\ListLogsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getList($params)
     {
@@ -162,6 +162,6 @@ class LogApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getListLogs($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->getListLogsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
     }
 }
