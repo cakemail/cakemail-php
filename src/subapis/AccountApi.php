@@ -49,10 +49,6 @@ class AccountApi
      */
     public function getSelf()
     {
-        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
-            throw new ApiException('Parameter must be an array');
-        }
-
         return new Response($this->openApiObj->getSelfAccountWithHttpInfo());
     }
 

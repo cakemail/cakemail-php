@@ -167,10 +167,6 @@ class UserApi
      */
     public function getSelf()
     {
-        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
-            throw new ApiException('Parameter must be an array');
-        }
-
         return new Response($this->openApiObj->getSelfUserWithHttpInfo());
     }
 
@@ -342,10 +338,6 @@ class UserApi
      */
     public function resetSelfPassword()
     {
-        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
-            throw new ApiException('Parameter must be an array');
-        }
-
         return new Response($this->openApiObj->resetSelfPasswordWithHttpInfo());
     }
 
