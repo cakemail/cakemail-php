@@ -5,6 +5,7 @@ use Cakemail\Lib\Configuration;
 use GuzzleHttp\Client;
 
 use Cakemail\Subapis\AccountApi;
+use Cakemail\Subapis\ActionApi;
 use Cakemail\Subapis\CampaignApi;
 use Cakemail\Subapis\ContactApi;
 use Cakemail\Subapis\CustomAttributeApi;
@@ -22,6 +23,7 @@ use Cakemail\Subapis\TemplateApi;
 use Cakemail\Subapis\TokenApi;
 use Cakemail\Subapis\TransactionalEmailApi;
 use Cakemail\Subapis\UserApi;
+use Cakemail\Subapis\WorkflowApi;
 
 class Api
 {
@@ -30,6 +32,7 @@ class Api
     private $tokenObj;
 
     public $account;
+    public $action;
     public $campaign;
     public $contact;
     public $custom_attribute;
@@ -47,6 +50,7 @@ class Api
     public $token;
     public $transactional_email;
     public $user;
+    public $workflow;
 
     public function __construct($username, $password)
     {
@@ -56,6 +60,7 @@ class Api
         $this->config->setAccessToken($this->tokenObj->accessToken);
 
         $this->account = new AccountApi(new Client(), $this->config);
+        $this->action = new ActionApi(new Client(), $this->config);
         $this->campaign = new CampaignApi(new Client(), $this->config);
         $this->contact = new ContactApi(new Client(), $this->config);
         $this->custom_attribute = new CustomAttributeApi(new Client(), $this->config);
@@ -73,6 +78,7 @@ class Api
         $this->token = new TokenApi(new Client(), $this->config);
         $this->transactional_email = new TransactionalEmailApi(new Client(), $this->config);
         $this->user = new UserApi(new Client(), $this->config);
+        $this->workflow = new WorkflowApi(new Client(), $this->config);
     }
 
     public function __get($name)

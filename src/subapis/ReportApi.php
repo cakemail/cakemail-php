@@ -70,6 +70,38 @@ class ReportApi
     }
 
     /**
+     * Operation getAction
+     *
+     * Show action report
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$workflow_id</b> (required)<br>
+     *                      string <b>$action_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\ActionStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAction($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'workflow_id' => ['value' => null, 'isOptional' => false],
+                        'action_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->getActionStatsWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation getCampaignLink
      *
      * Show campaign links report
