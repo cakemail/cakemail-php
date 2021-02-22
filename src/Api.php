@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Cakemail\Subapis\AccountApi;
 use Cakemail\Subapis\ActionApi;
 use Cakemail\Subapis\CampaignApi;
+use Cakemail\Subapis\CampaignBlueprintApi;
 use Cakemail\Subapis\ContactApi;
 use Cakemail\Subapis\CustomAttributeApi;
 use Cakemail\Subapis\DomainApi;
@@ -24,6 +25,7 @@ use Cakemail\Subapis\TokenApi;
 use Cakemail\Subapis\TransactionalEmailApi;
 use Cakemail\Subapis\UserApi;
 use Cakemail\Subapis\WorkflowApi;
+use Cakemail\Subapis\WorkflowBlueprintApi;
 
 class Api
 {
@@ -34,6 +36,7 @@ class Api
     public $account;
     public $action;
     public $campaign;
+    public $campaign_blueprint;
     public $contact;
     public $custom_attribute;
     public $domain;
@@ -51,6 +54,7 @@ class Api
     public $transactional_email;
     public $user;
     public $workflow;
+    public $workflow_blueprint;
 
     public function __construct($username, $password)
     {
@@ -62,6 +66,7 @@ class Api
         $this->account = new AccountApi(new Client(), $this->config);
         $this->action = new ActionApi(new Client(), $this->config);
         $this->campaign = new CampaignApi(new Client(), $this->config);
+        $this->campaign_blueprint = new CampaignBlueprintApi(new Client(), $this->config);
         $this->contact = new ContactApi(new Client(), $this->config);
         $this->custom_attribute = new CustomAttributeApi(new Client(), $this->config);
         $this->domain = new DomainApi(new Client(), $this->config);
@@ -79,6 +84,7 @@ class Api
         $this->transactional_email = new TransactionalEmailApi(new Client(), $this->config);
         $this->user = new UserApi(new Client(), $this->config);
         $this->workflow = new WorkflowApi(new Client(), $this->config);
+        $this->workflow_blueprint = new WorkflowBlueprintApi(new Client(), $this->config);
     }
 
     public function __get($name)
