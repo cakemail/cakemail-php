@@ -141,7 +141,7 @@ class LogApi
      *                      int <b>$page</b> (optional, default to 1)<br>
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
-     *                      string <b>$filter</b> Valid Terms:   - &#x60;group_id&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;group_id&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException

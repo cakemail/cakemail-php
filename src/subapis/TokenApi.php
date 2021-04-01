@@ -48,6 +48,7 @@ class TokenApi
      *                      string <b>$password</b> (required)<br>
      *                      \Cakemail\Lib\Model\PasswordGrantType <b>$grant_type</b> (optional)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$scopes</b> (optional, default to 'user')<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -64,11 +65,12 @@ class TokenApi
                         'password' => ['value' => null, 'isOptional' => false],
                         'grant_type' => ['value' => null, 'isOptional' => true],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'scopes' => ['value' => "'user'", 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createTokenWithHttpInfo($allParams['username']['value'], $allParams['password']['value'], $allParams['grant_type']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createTokenWithHttpInfo($allParams['username']['value'], $allParams['password']['value'], $allParams['grant_type']['value'], $allParams['account_id']['value'], $allParams['scopes']['value']));
     }
 
     /**

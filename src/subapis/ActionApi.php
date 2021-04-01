@@ -134,6 +134,44 @@ class ActionApi
     }
 
     /**
+     * Operation listActionLinks
+     *
+     * Show action links
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$action_id</b> (required)<br>
+     *                      string <b>$workflow_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\LinksResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listActionLinks($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'action_id' => ['value' => null, 'isOptional' => false],
+                        'workflow_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'page' => ['value' => "1", 'isOptional' => true],
+                        'per_page' => ['value' => "50", 'isOptional' => true],
+                        'with_count' => ['value' => "false", 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->listActionLinksWithHttpInfo($allParams['action_id']['value'], $allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+    }
+
+    /**
      * Operation list
      *
      * List actions
