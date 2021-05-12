@@ -1,6 +1,6 @@
 <?php
 /**
- * ActionEmailSettings
+ * PatchTracking
  *
  * PHP version 7.2
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Cakemail\Lib\ObjectSerializer;
 
 /**
- * ActionEmailSettings Class Doc Comment
+ * PatchTracking Class Doc Comment
  *
  * @category Class
  * @package  Cakemail\Lib
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ActionEmailSettings implements ModelInterface, ArrayAccess
+class PatchTracking implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ActionEmailSettings';
+    protected static $openAPIModelName = 'PatchTracking';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'tracking' => 'ActionTracking',
-        'content' => '\Cakemail\Lib\Model\ActionContent',
-        'sender' => '\Cakemail\Lib\Model\Sender'
+        'opens' => 'bool',
+        'clicks_html' => 'bool',
+        'clicks_text' => 'bool',
+        'additional_params' => 'string'
     ];
 
     /**
@@ -68,9 +69,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'tracking' => null,
-        'content' => null,
-        'sender' => null
+        'opens' => null,
+        'clicks_html' => null,
+        'clicks_text' => null,
+        'additional_params' => null
     ];
 
     /**
@@ -100,9 +102,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'tracking' => 'tracking',
-        'content' => 'content',
-        'sender' => 'sender'
+        'opens' => 'opens',
+        'clicks_html' => 'clicks_html',
+        'clicks_text' => 'clicks_text',
+        'additional_params' => 'additional_params'
     ];
 
     /**
@@ -111,9 +114,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'tracking' => 'setTracking',
-        'content' => 'setContent',
-        'sender' => 'setSender'
+        'opens' => 'setOpens',
+        'clicks_html' => 'setClicksHtml',
+        'clicks_text' => 'setClicksText',
+        'additional_params' => 'setAdditionalParams'
     ];
 
     /**
@@ -122,9 +126,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'tracking' => 'getTracking',
-        'content' => 'getContent',
-        'sender' => 'getSender'
+        'opens' => 'getOpens',
+        'clicks_html' => 'getClicksHtml',
+        'clicks_text' => 'getClicksText',
+        'additional_params' => 'getAdditionalParams'
     ];
 
     /**
@@ -187,9 +192,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['tracking'] = isset($data['tracking']) ? $data['tracking'] : null;
-        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
-        $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
+        $this->container['opens'] = isset($data['opens']) ? $data['opens'] : null;
+        $this->container['clicks_html'] = isset($data['clicks_html']) ? $data['clicks_html'] : null;
+        $this->container['clicks_text'] = isset($data['clicks_text']) ? $data['clicks_text'] : null;
+        $this->container['additional_params'] = isset($data['additional_params']) ? $data['additional_params'] : null;
     }
 
     /**
@@ -201,12 +207,10 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['content'] === null) {
-            $invalidProperties[] = "'content' can't be null";
+        if (!is_null($this->container['additional_params']) && (mb_strlen($this->container['additional_params']) < 1)) {
+            $invalidProperties[] = "invalid value for 'additional_params', the character length must be bigger than or equal to 1.";
         }
-        if ($this->container['sender'] === null) {
-            $invalidProperties[] = "'sender' can't be null";
-        }
+
         return $invalidProperties;
     }
 
@@ -223,73 +227,102 @@ class ActionEmailSettings implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets tracking
+     * Gets opens
      *
-     * @return ActionTracking|null
+     * @return bool|null
      */
-    public function getTracking()
+    public function getOpens()
     {
-        return $this->container['tracking'];
+        return $this->container['opens'];
     }
 
     /**
-     * Sets tracking
+     * Sets opens
      *
-     * @param ActionTracking|null $tracking tracking
+     * @param bool|null $opens Enable the tracking of opens (only available for the HTML version)
      *
      * @return $this
      */
-    public function setTracking($tracking)
+    public function setOpens($opens)
     {
-        $this->container['tracking'] = $tracking;
+        $this->container['opens'] = $opens;
 
         return $this;
     }
 
     /**
-     * Gets content
+     * Gets clicks_html
      *
-     * @return \Cakemail\Lib\Model\ActionContent
+     * @return bool|null
      */
-    public function getContent()
+    public function getClicksHtml()
     {
-        return $this->container['content'];
+        return $this->container['clicks_html'];
     }
 
     /**
-     * Sets content
+     * Sets clicks_html
      *
-     * @param \Cakemail\Lib\Model\ActionContent $content content
+     * @param bool|null $clicks_html Enable the tracking of link clicks in the HTML version
      *
      * @return $this
      */
-    public function setContent($content)
+    public function setClicksHtml($clicks_html)
     {
-        $this->container['content'] = $content;
+        $this->container['clicks_html'] = $clicks_html;
 
         return $this;
     }
 
     /**
-     * Gets sender
+     * Gets clicks_text
      *
-     * @return \Cakemail\Lib\Model\Sender
+     * @return bool|null
      */
-    public function getSender()
+    public function getClicksText()
     {
-        return $this->container['sender'];
+        return $this->container['clicks_text'];
     }
 
     /**
-     * Sets sender
+     * Sets clicks_text
      *
-     * @param \Cakemail\Lib\Model\Sender $sender sender
+     * @param bool|null $clicks_text Enable the tracking of link clicks in the text version
      *
      * @return $this
      */
-    public function setSender($sender)
+    public function setClicksText($clicks_text)
     {
-        $this->container['sender'] = $sender;
+        $this->container['clicks_text'] = $clicks_text;
+
+        return $this;
+    }
+
+    /**
+     * Gets additional_params
+     *
+     * @return string|null
+     */
+    public function getAdditionalParams()
+    {
+        return $this->container['additional_params'];
+    }
+
+    /**
+     * Sets additional_params
+     *
+     * @param string|null $additional_params Append additional tracking parameters on all link (should be URL encoded)
+     *
+     * @return $this
+     */
+    public function setAdditionalParams($additional_params)
+    {
+
+        if (!is_null($additional_params) && (mb_strlen($additional_params) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $additional_params when calling PatchTracking., must be bigger than or equal to 1.');
+        }
+
+        $this->container['additional_params'] = $additional_params;
 
         return $this;
     }

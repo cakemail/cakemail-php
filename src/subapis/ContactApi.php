@@ -47,6 +47,7 @@ class ContactApi
      *                      int <b>$list_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\Contact <b>$contact</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      bool <b>$send_double_opt_in</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -62,11 +63,12 @@ class ContactApi
                         'list_id' => ['value' => null, 'isOptional' => false],
                         'contact' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'send_double_opt_in' => ['value' => "false", 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact']['value'], $allParams['account_id']['value'], $allParams['send_double_opt_in']['value']));
     }
 
     /**
