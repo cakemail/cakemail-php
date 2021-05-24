@@ -17,8 +17,8 @@ class Response implements ArrayAccess, Iterator  {
     public function __construct($obj) {
         if (is_array($obj) && !isset($obj['data'])) {
             $this->obj = $obj[0];
-            $this->statusCode = $obj[1];
-            $this->headers = $obj[2];
+            $this->statusCode = $obj[1] ?? null;
+            $this->headers = $obj[2] ?? null;
         } else {
             $this->obj = $obj;
         }
