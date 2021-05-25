@@ -10,10 +10,18 @@ use Cakemail\Lib\ApiException;
 
 class Response implements ArrayAccess, Iterator  {
     private $obj;
+    private $statusCode = null;
+    private $headers = null;
     private $position = 0;
 
     public function __construct($obj) {
-        $this->obj = $obj;
+        if (is_array($obj) && !isset($obj['data'])) {
+            $this->obj = $obj[0];
+            $this->statusCode = $obj[1] ?? null;
+            $this->headers = $obj[2] ?? null;
+        } else {
+            $this->obj = $obj;
+        }
     }
 
     // the ArrayAccess interface's methods
@@ -34,15 +42,19 @@ class Response implements ArrayAccess, Iterator  {
             if (isset($this->obj['pagination'])) {
                 return $this->obj['pagination'];
             } else {
-                throw new ApiException('This methhod does not have pagination');
-            }
-        } else {
-            if (isset($this->obj['data'][$offset])) {
-                return $this->obj['data'][$offset];
-            } else {
-                throw new ApiException('Parameter not found');
+                throw new ApiException('This method does not have pagination');
             }
         }
+        if (isset($this->obj['data'][$offset])) {
+            return $this->obj['data'][$offset];
+        }
+        if (isset($this->{$offset})) {
+            return $this->{$offset};
+        }
+        if (isset($this->obj[$offset])) {
+            return $this->obj[$offset];
+        }
+        throw new ApiException('Parameter not found');
     }
 
     // now the Iterator interface's methods
