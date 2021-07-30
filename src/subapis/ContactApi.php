@@ -182,7 +182,7 @@ class ContactApi
      *                      string <b>$query</b> SQL selection query (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$fiql</b> FIQL selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
-     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;email&#x60;   - &#x60;created_on&#x60;   - &#x60;scheduled_for&#x60;   - &#x60;scheduled_on&#x60;   - &#x60;type&#x60; (optional)<br>
+     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
@@ -229,7 +229,7 @@ class ContactApi
      *                      string <b>$query</b> SQL selection query (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$fiql</b> FIQL selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
-     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;name&#x60;   - &#x60;email&#x60;   - &#x60;created_on&#x60;   - &#x60;scheduled_for&#x60;   - &#x60;scheduled_on&#x60;   - &#x60;type&#x60; (optional)<br>
+     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response

@@ -47,6 +47,7 @@ class ActionApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\Action <b>$action</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -62,11 +63,12 @@ class ActionApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'action' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -79,6 +81,7 @@ class ActionApi
      *                      string <b>$action_id</b> (required)<br>
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -94,11 +97,12 @@ class ActionApi
                         'action_id' => ['value' => null, 'isOptional' => false],
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteActionWithHttpInfo($allParams['action_id']['value'], $allParams['workflow_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteActionWithHttpInfo($allParams['action_id']['value'], $allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -111,6 +115,7 @@ class ActionApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      string <b>$action_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -126,11 +131,12 @@ class ActionApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'action_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -220,6 +226,7 @@ class ActionApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\PatchAction <b>$patch_action</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -236,11 +243,12 @@ class ActionApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'patch_action' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchActionWithHttpInfo($allParams['action_id']['value'], $allParams['workflow_id']['value'], $allParams['patch_action']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchActionWithHttpInfo($allParams['action_id']['value'], $allParams['workflow_id']['value'], $allParams['patch_action']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -253,10 +261,11 @@ class ActionApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      string <b>$action_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Cakemail\Lib\Model\RenderActionResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of string|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
     public function render($params)
     {
@@ -268,11 +277,12 @@ class ActionApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'action_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->renderActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->renderActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -286,6 +296,7 @@ class ActionApi
      *                      string <b>$action_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\SendTestAction <b>$send_test_action</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -302,10 +313,11 @@ class ActionApi
                         'action_id' => ['value' => null, 'isOptional' => false],
                         'send_test_action' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->sendTestActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['send_test_action']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->sendTestActionWithHttpInfo($allParams['workflow_id']['value'], $allParams['action_id']['value'], $allParams['send_test_action']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 }

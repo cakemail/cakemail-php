@@ -44,6 +44,7 @@ class LogoApi
      *
      *
      * @param mixed[] $params
+     *                      string <b>$brand_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\UploadLogo <b>$upload_logo</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
      *
@@ -58,12 +59,13 @@ class LogoApi
         }
 
         $allParams = [
+                        'brand_id' => ['value' => null, 'isOptional' => false],
                         'upload_logo' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->uploadDefaultLogoWithHttpInfo($allParams['upload_logo']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->uploadDefaultLogoWithHttpInfo($allParams['brand_id']['value'], $allParams['upload_logo']['value'], $allParams['account_id']['value']));
     }
 }

@@ -46,6 +46,7 @@ class WorkflowApi
      * @param mixed[] $params
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -60,11 +61,12 @@ class WorkflowApi
         $allParams = [
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->activateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->activateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -76,6 +78,7 @@ class WorkflowApi
      * @param mixed[] $params
      *                      \Cakemail\Lib\Model\Workflow <b>$workflow</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -90,11 +93,12 @@ class WorkflowApi
         $allParams = [
                         'workflow' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createWorkflowWithHttpInfo($allParams['workflow']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createWorkflowWithHttpInfo($allParams['workflow']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -106,6 +110,7 @@ class WorkflowApi
      * @param mixed[] $params
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -120,11 +125,12 @@ class WorkflowApi
         $allParams = [
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deactivateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deactivateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -136,6 +142,7 @@ class WorkflowApi
      * @param mixed[] $params
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -150,11 +157,12 @@ class WorkflowApi
         $allParams = [
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->deleteWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->deleteWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -166,6 +174,7 @@ class WorkflowApi
      * @param mixed[] $params
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -180,11 +189,12 @@ class WorkflowApi
         $allParams = [
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
     }
 
     /**
@@ -224,6 +234,38 @@ class WorkflowApi
     }
 
     /**
+     * Operation lock
+     *
+     * Lock a workflow
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$workflow_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\LockWorkflow <b>$lock_workflow</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\LockWorkflowResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function lock($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'workflow_id' => ['value' => null, 'isOptional' => false],
+                        'lock_workflow' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->lockWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['lock_workflow']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation update
      *
      * Update a workflow
@@ -233,6 +275,7 @@ class WorkflowApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\PatchWorkflow <b>$patch_workflow</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -248,10 +291,43 @@ class WorkflowApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'patch_workflow' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'lock_key' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->patchWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['patch_workflow']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->patchWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['patch_workflow']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
+    }
+
+    /**
+     * Operation unlock
+     *
+     * Unlock a workflow
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$workflow_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\UnlockWorkflow <b>$unlock_workflow</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\UnlockWorkflowResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function unlock($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'workflow_id' => ['value' => null, 'isOptional' => false],
+                        'unlock_workflow' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->unlockWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['unlock_workflow']['value'], $allParams['account_id']['value']));
     }
 }
