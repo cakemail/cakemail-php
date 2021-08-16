@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 
 use Cakemail\Subapis\AccountApi;
 use Cakemail\Subapis\ActionApi;
-use Cakemail\Subapis\BrandsApi;
 use Cakemail\Subapis\CampaignApi;
 use Cakemail\Subapis\CampaignBlueprintApi;
 use Cakemail\Subapis\ContactApi;
@@ -22,12 +21,12 @@ use Cakemail\Subapis\SegmentApi;
 use Cakemail\Subapis\SenderApi;
 use Cakemail\Subapis\SubAccountApi;
 use Cakemail\Subapis\SuppressedEmailApi;
-use Cakemail\Subapis\SystemEmailsApi;
+use Cakemail\Subapis\SystemEmailApi;
 use Cakemail\Subapis\TemplateApi;
 use Cakemail\Subapis\TokenApi;
 use Cakemail\Subapis\TransactionalEmailApi;
 use Cakemail\Subapis\UserApi;
-use Cakemail\Subapis\WebhooksApi;
+use Cakemail\Subapis\WebhookApi;
 use Cakemail\Subapis\WorkflowApi;
 use Cakemail\Subapis\WorkflowBlueprintApi;
 
@@ -39,7 +38,6 @@ class Api
 
     public $account;
     public $action;
-    public $brands;
     public $campaign;
     public $campaign_blueprint;
     public $contact;
@@ -55,12 +53,12 @@ class Api
     public $sender;
     public $sub_account;
     public $suppressed_email;
-    public $system_emails;
+    public $system_email;
     public $template;
     public $token;
     public $transactional_email;
     public $user;
-    public $webhooks;
+    public $webhook;
     public $workflow;
     public $workflow_blueprint;
 
@@ -73,7 +71,6 @@ class Api
 
         $this->account = new AccountApi(new Client(), $this->config);
         $this->action = new ActionApi(new Client(), $this->config);
-        $this->brands = new BrandsApi(new Client(), $this->config);
         $this->campaign = new CampaignApi(new Client(), $this->config);
         $this->campaign_blueprint = new CampaignBlueprintApi(new Client(), $this->config);
         $this->contact = new ContactApi(new Client(), $this->config);
@@ -89,12 +86,12 @@ class Api
         $this->sender = new SenderApi(new Client(), $this->config);
         $this->sub_account = new SubAccountApi(new Client(), $this->config);
         $this->suppressed_email = new SuppressedEmailApi(new Client(), $this->config);
-        $this->system_emails = new SystemEmailsApi(new Client(), $this->config);
+        $this->system_email = new SystemEmailApi(new Client(), $this->config);
         $this->template = new TemplateApi(new Client(), $this->config);
         $this->token = new TokenApi(new Client(), $this->config);
         $this->transactional_email = new TransactionalEmailApi(new Client(), $this->config);
         $this->user = new UserApi(new Client(), $this->config);
-        $this->webhooks = new WebhooksApi(new Client(), $this->config);
+        $this->webhook = new WebhookApi(new Client(), $this->config);
         $this->workflow = new WorkflowApi(new Client(), $this->config);
         $this->workflow_blueprint = new WorkflowBlueprintApi(new Client(), $this->config);
     }
