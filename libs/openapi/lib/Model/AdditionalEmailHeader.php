@@ -1,6 +1,6 @@
 <?php
 /**
- * DeleteContactResponse
+ * AdditionalEmailHeader
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Cakemail\Lib\ObjectSerializer;
 
 /**
- * DeleteContactResponse Class Doc Comment
+ * AdditionalEmailHeader Class Doc Comment
  *
  * @category Class
  * @package  Cakemail\Lib
@@ -42,7 +42,7 @@ use \Cakemail\Lib\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class AdditionalEmailHeader implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'DeleteContactResponse';
+    protected static $openAPIModelName = 'AdditionalEmailHeader';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +59,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'int',
-        'object' => 'string',
-        'deleted' => 'bool'
+        'name' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -72,9 +71,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'object' => null,
-        'deleted' => null
+        'name' => null,
+        'value' => null
     ];
 
     /**
@@ -104,9 +102,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'object' => 'object',
-        'deleted' => 'deleted'
+        'name' => 'name',
+        'value' => 'value'
     ];
 
     /**
@@ -115,9 +112,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'object' => 'setObject',
-        'deleted' => 'setDeleted'
+        'name' => 'setName',
+        'value' => 'setValue'
     ];
 
     /**
@@ -126,9 +122,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'object' => 'getObject',
-        'deleted' => 'getDeleted'
+        'name' => 'getName',
+        'value' => 'getValue'
     ];
 
     /**
@@ -188,9 +183,8 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = $data['id'] ?? null;
-        $this->container['object'] = $data['object'] ?? 'contact';
-        $this->container['deleted'] = $data['deleted'] ?? true;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['value'] = $data['value'] ?? null;
     }
 
     /**
@@ -202,8 +196,11 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
         }
         return $invalidProperties;
     }
@@ -221,73 +218,49 @@ class DeleteContactResponse implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets id
+     * Gets name
      *
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getName()
     {
-        return $this->container['id'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets id
+     * Sets name
      *
-     * @param int $id id
+     * @param string $name name
      *
      * @return self
      */
-    public function setId($id)
+    public function setName($name)
     {
-        $this->container['id'] = $id;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets object
+     * Gets value
      *
-     * @return string|null
+     * @return string
      */
-    public function getObject()
+    public function getValue()
     {
-        return $this->container['object'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets object
+     * Sets value
      *
-     * @param string|null $object object
+     * @param string $value value
      *
      * @return self
      */
-    public function setObject($object)
+    public function setValue($value)
     {
-        $this->container['object'] = $object;
-
-        return $this;
-    }
-
-    /**
-     * Gets deleted
-     *
-     * @return bool|null
-     */
-    public function getDeleted()
-    {
-        return $this->container['deleted'];
-    }
-
-    /**
-     * Sets deleted
-     *
-     * @param bool|null $deleted deleted
-     *
-     * @return self
-     */
-    public function setDeleted($deleted)
-    {
-        $this->container['deleted'] = $deleted;
+        $this->container['value'] = $value;
 
         return $this;
     }
