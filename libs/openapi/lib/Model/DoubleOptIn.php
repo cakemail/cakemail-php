@@ -1,6 +1,6 @@
 <?php
 /**
- * WorkflowTrigger
+ * DoubleOptIn
  *
  * PHP version 7.3
  *
@@ -30,24 +30,26 @@ namespace Cakemail\Lib\Model;
 use \Cakemail\Lib\ObjectSerializer;
 
 /**
- * WorkflowTrigger Class Doc Comment
+ * DoubleOptIn Class Doc Comment
  *
  * @category Class
- * @description An enumeration.
+ * @description Default: &#39;false&#39;  Send a double opt-in/confirmation email   - __new__ : send only if the email is new to the list   - __not_active__ : send only if the contact is not already active   - __true__ : send the email regardless of contact status   - __false__ : do not send the email
  * @package  Cakemail\Lib
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class WorkflowTrigger
+class DoubleOptIn
 {
     /**
      * Possible values of this enum
      */
-    const SUBSCRIBED = 'subscribed';
+    const TRUE = 'true';
 
-    const UNSUBSCRIBED = 'unsubscribed';
+    const FALSE = 'false';
 
-    const MANUAL = 'manual';
+    const _NEW = 'new';
+
+    const NOT_ACTIVE = 'not_active';
 
     /**
      * Gets allowable values of the enum
@@ -56,9 +58,10 @@ class WorkflowTrigger
     public static function getAllowableEnumValues()
     {
         return [
-            self::SUBSCRIBED,
-            self::UNSUBSCRIBED,
-            self::MANUAL
+            self::TRUE,
+            self::FALSE,
+            self::_NEW,
+            self::NOT_ACTIVE
         ];
     }
 }

@@ -40,14 +40,14 @@ class ContactApi
     /**
      * Operation create
      *
-     * Add a contact in a list
+     * Add a contact to a list
      *
      *
      * @param mixed[] $params
      *                      int <b>$list_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\Contact <b>$contact</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
-     *                      bool <b>$send_double_opt_in</b> (optional, default to false)<br>
+     *                      \Cakemail\Lib\Model\DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -63,7 +63,7 @@ class ContactApi
                         'list_id' => ['value' => null, 'isOptional' => false],
                         'contact' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
-                        'send_double_opt_in' => ['value' => "false", 'isOptional' => true],
+                        'send_double_opt_in' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
@@ -145,6 +145,7 @@ class ContactApi
      *                      int <b>$list_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\ImportContacts <b>$import_contacts</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      \Cakemail\Lib\Model\DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -160,11 +161,12 @@ class ContactApi
                         'list_id' => ['value' => null, 'isOptional' => false],
                         'import_contacts' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'send_double_opt_in' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->importContactsWithHttpInfo($allParams['list_id']['value'], $allParams['import_contacts']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->importContactsWithHttpInfo($allParams['list_id']['value'], $allParams['import_contacts']['value'], $allParams['account_id']['value'], $allParams['send_double_opt_in']['value']));
     }
 
     /**
