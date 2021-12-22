@@ -145,6 +145,7 @@ class SegmentApi
      *                      int <b>$page</b> (optional, default to 1)<br>
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;name&#x60;   - &#x60;created_on&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -162,11 +163,12 @@ class SegmentApi
                         'page' => ['value' => "1", 'isOptional' => true],
                         'per_page' => ['value' => "50", 'isOptional' => true],
                         'with_count' => ['value' => "false", 'isOptional' => true],
+                        'sort' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listSegmentsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listSegmentsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['sort']['value']));
     }
 
     /**

@@ -76,6 +76,7 @@ class SubAccountApi
      * @param mixed[] $params
      *                      \Cakemail\Lib\Model\CreateAccount <b>$create_account</b> (required)<br>
      *                      int <b>$partner_account_id</b> (optional)<br>
+     *                      bool <b>$skip_verification</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -90,11 +91,12 @@ class SubAccountApi
         $allParams = [
                         'create_account' => ['value' => null, 'isOptional' => false],
                         'partner_account_id' => ['value' => null, 'isOptional' => true],
+                        'skip_verification' => ['value' => "false", 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createAccountWithHttpInfo($allParams['create_account']['value'], $allParams['partner_account_id']['value']));
+        return new Response($this->openApiObj->createAccountWithHttpInfo($allParams['create_account']['value'], $allParams['partner_account_id']['value'], $allParams['skip_verification']['value']));
     }
 
     /**

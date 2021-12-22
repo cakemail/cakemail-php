@@ -1,6 +1,6 @@
 <?php
 /**
- * ForgotMyPassword
+ * SenderAndName
  *
  * PHP version 7.2
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Cakemail\Lib\ObjectSerializer;
 
 /**
- * ForgotMyPassword Class Doc Comment
+ * SenderAndName Class Doc Comment
  *
  * @category Class
  * @package  Cakemail\Lib
@@ -42,7 +42,7 @@ use \Cakemail\Lib\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
+class SenderAndName implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ForgotMyPassword';
+    protected static $openAPIModelName = 'SenderAndName';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'email' => 'string'
+        'id' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -70,7 +71,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'email' => 'email'
+        'id' => null,
+        'name' => null
     ];
 
     /**
@@ -100,7 +102,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'email' => 'email'
+        'id' => 'id',
+        'name' => 'name'
     ];
 
     /**
@@ -109,7 +112,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'email' => 'setEmail'
+        'id' => 'setId',
+        'name' => 'setName'
     ];
 
     /**
@@ -118,7 +122,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'email' => 'getEmail'
+        'id' => 'getId',
+        'name' => 'getName'
     ];
 
     /**
@@ -178,7 +183,8 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['email'] = $data['email'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
     }
 
     /**
@@ -190,9 +196,17 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['email'] === null) {
-            $invalidProperties[] = "'email' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
+        if ((mb_strlen($this->container['id']) < 1)) {
+            $invalidProperties[] = "invalid value for 'id', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) < 1)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -209,25 +223,59 @@ class ForgotMyPassword implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets email
+     * Gets id
      *
      * @return string
      */
-    public function getEmail()
+    public function getId()
     {
-        return $this->container['email'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets email
+     * Sets id
      *
-     * @param string $email email
+     * @param string $id id
      *
      * @return self
      */
-    public function setEmail($email)
+    public function setId($id)
     {
-        $this->container['email'] = $email;
+
+        if ((mb_strlen($id) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $id when calling SenderAndName., must be bigger than or equal to 1.');
+        }
+
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string|null $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+
+        if (!is_null($name) && (mb_strlen($name) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling SenderAndName., must be bigger than or equal to 1.');
+        }
+
+        $this->container['name'] = $name;
 
         return $this;
     }

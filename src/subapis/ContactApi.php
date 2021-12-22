@@ -47,7 +47,7 @@ class ContactApi
      *                      int <b>$list_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\Contact <b>$contact</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
-     *                      \Cakemail\Lib\Model\DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
+     *                      DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -145,7 +145,7 @@ class ContactApi
      *                      int <b>$list_id</b> (required)<br>
      *                      \Cakemail\Lib\Model\ImportContacts <b>$import_contacts</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
-     *                      \Cakemail\Lib\Model\DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
+     *                      DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException

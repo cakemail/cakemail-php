@@ -134,7 +134,7 @@ class LogApi
      *
      *
      * @param mixed[] $params
-     *                      \Cakemail\Lib\Model\LogType <b>$log_type</b> (required)<br>
+     *                      LogType <b>$log_type</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
      *                      int <b>$start_time</b> (optional)<br>
      *                      int <b>$end_time</b> (optional)<br>

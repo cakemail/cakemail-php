@@ -136,7 +136,7 @@ class UserApi
      * @param mixed[] $params
      *                      \Cakemail\Lib\Model\ForgotMyPassword <b>$forgot_my_password</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
-     *                      \Cakemail\Lib\Model\Languages <b>$language</b> (optional)<br>
+     *                      Languages <b>$language</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
