@@ -16,7 +16,7 @@ class Token
     {
         $configuration = Configuration::getDefaultConfiguration();
         $this->_tokenApi =  new TokenApi(new Client(), $configuration);
-        $token = $this->_tokenApi->createToken($username, $password, 'password');
+        $token = $this->_tokenApi->createToken($username, 'password', $password);
 
         $this->accessToken = $token->getAccessToken();
         $this->refreshToken = $token->getRefreshToken();
