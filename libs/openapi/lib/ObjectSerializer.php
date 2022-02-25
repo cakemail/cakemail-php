@@ -272,6 +272,10 @@ class ObjectSerializer
             return null;
         }
 
+        if ($class == 'Languages') {
+            $class = '\Cakemail\Lib\Model\Languages';
+        }
+
         if (strcasecmp(substr($class, -2), '[]') === 0) {
             $data = is_string($data) ? json_decode($data) : $data;
 
