@@ -76,6 +76,7 @@ class UserApi
      * @param mixed[] $params
      *                      \Cakemail\Lib\Model\User <b>$user</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      bool <b>$skip_verification</b> (optional, default to false)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -90,11 +91,12 @@ class UserApi
         $allParams = [
                         'user' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'skip_verification' => ['value' => "false", 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createUserWithHttpInfo($allParams['user']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->createUserWithHttpInfo($allParams['user']['value'], $allParams['account_id']['value'], $allParams['skip_verification']['value']));
     }
 
     /**

@@ -40,13 +40,13 @@ class ReportApi
     /**
      * Operation getAccount
      *
-     * Show an account report
+     * Show account report
      *
      *
      * @param mixed[] $params
      *                      int <b>$account_id</b> (required)<br>
-     *                      int <b>$start_time</b> (required)<br>
-     *                      int <b>$end_time</b> (required)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -60,8 +60,8 @@ class ReportApi
 
         $allParams = [
                         'account_id' => ['value' => null, 'isOptional' => false],
-                        'start_time' => ['value' => null, 'isOptional' => false],
-                        'end_time' => ['value' => null, 'isOptional' => false],
+                        'start_time' => ['value' => null, 'isOptional' => true],
+                        'end_time' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
@@ -242,22 +242,22 @@ class ReportApi
      *
      *
      * @param mixed[] $params
-     *                      int <b>$start_time</b> (required)<br>
-     *                      int <b>$end_time</b> (required)<br>
+     *                      int <b>$start_time</b> (optional)<br>
+     *                      int <b>$end_time</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Cakemail\Lib\Model\AccountStatsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSelfAccount($params)
+    public function getSelfAccount($params = [])
     {
         if (gettype($params) != 'array' && gettype($params) != 'NULL') {
             throw new ApiException('Parameter must be an array');
         }
 
         $allParams = [
-                        'start_time' => ['value' => null, 'isOptional' => false],
-                        'end_time' => ['value' => null, 'isOptional' => false],
+                        'start_time' => ['value' => null, 'isOptional' => true],
+                        'end_time' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
