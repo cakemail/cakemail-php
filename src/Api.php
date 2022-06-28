@@ -10,6 +10,7 @@ use Cakemail\Subapis\CampaignApi;
 use Cakemail\Subapis\CampaignBlueprintApi;
 use Cakemail\Subapis\ContactApi;
 use Cakemail\Subapis\CustomAttributeApi;
+use Cakemail\Subapis\DKIMApi;
 use Cakemail\Subapis\DomainApi;
 use Cakemail\Subapis\FormApi;
 use Cakemail\Subapis\LinksApi;
@@ -43,6 +44,7 @@ class Api
     public $campaign_blueprint;
     public $contact;
     public $custom_attribute;
+    public $d_k_i_m;
     public $domain;
     public $form;
     public $links;
@@ -77,6 +79,7 @@ class Api
         $this->campaign_blueprint = new CampaignBlueprintApi(new Client(), $this->config);
         $this->contact = new ContactApi(new Client(), $this->config);
         $this->custom_attribute = new CustomAttributeApi(new Client(), $this->config);
+        $this->d_k_i_m = new DKIMApi(new Client(), $this->config);
         $this->domain = new DomainApi(new Client(), $this->config);
         $this->form = new FormApi(new Client(), $this->config);
         $this->links = new LinksApi(new Client(), $this->config);
