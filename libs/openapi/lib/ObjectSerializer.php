@@ -356,8 +356,8 @@ class ObjectSerializer
             return null;
         }
 
-        if ($class == 'Languages') {
-            $class = '\Cakemail\Lib\Model\Languages';
+        if (in_array($class, ['Languages', 'CustomAttributeType'])) {
+            $class = "\Cakemail\Lib\Model\\" . $class;
         }
 
         if (strcasecmp(substr($class, -2), '[]') === 0) {
