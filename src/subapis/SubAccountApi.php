@@ -130,7 +130,7 @@ class SubAccountApi
     /**
      * Operation get
      *
-     * Show a sub-account details
+     * Show sub-account details
      *
      *
      * @param mixed[] $params

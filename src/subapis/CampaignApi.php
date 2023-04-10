@@ -166,6 +166,7 @@ class CampaignApi
      * @param mixed[] $params
      *                      int <b>$campaign_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$revision_id</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -180,11 +181,48 @@ class CampaignApi
         $allParams = [
                         'campaign_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
+                        'revision_id' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value']));
+        return new Response($this->openApiObj->getCampaignWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['revision_id']['value']));
+    }
+
+    /**
+     * Operation getCampaignRevisions
+     *
+     * Show all campaign revisions
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\CampaignRevisionsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCampaignRevisions($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'page' => ['value' => "1", 'isOptional' => true],
+                        'per_page' => ['value' => "50", 'isOptional' => true],
+                        'with_count' => ['value' => "false", 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->getCampaignRevisionsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 
     /**

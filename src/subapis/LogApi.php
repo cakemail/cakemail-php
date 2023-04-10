@@ -38,6 +38,70 @@ class LogApi
 
 
     /**
+     * Operation campaignLogExportCreate
+     *
+     * Create a campaign log export
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$description</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\CreateCampaignLogExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function campaignLogExportCreate($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'description' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->campaignLogExportCreateWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['description']['value']));
+    }
+
+    /**
+     * Operation campaignLogExportDownload
+     *
+     * Download a campaign log export
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$campaign_log_export_id</b> (required)<br>
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\DownloadCampaignLogExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function campaignLogExportDownload($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_log_export_id' => ['value' => null, 'isOptional' => false],
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->campaignLogExportDownloadWithHttpInfo($allParams['campaign_log_export_id']['value'], $allParams['campaign_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation getAction
      *
      * Show action logs
@@ -97,6 +161,7 @@ class LogApi
      *                      int <b>$page</b> (optional, default to 1)<br>
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *                      string <b>$cursor</b> (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;additional_info&#x60;   - &#x60;link_id&#x60;   - &#x60;contact_id&#x60;   - &#x60;email&#x60;   - &#x60;uniques&#x60;   - &#x60;group_by_contact&#x60;   - &#x60;log_id&#x60;   - &#x60;totals&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;time&#x60;   - &#x60;log_id&#x60; (optional)<br>
      *
@@ -118,13 +183,14 @@ class LogApi
                         'page' => ['value' => "1", 'isOptional' => true],
                         'per_page' => ['value' => "50", 'isOptional' => true],
                         'with_count' => ['value' => "false", 'isOptional' => true],
+                        'cursor' => ['value' => null, 'isOptional' => true],
                         'filter' => ['value' => null, 'isOptional' => true],
                         'sort' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->getCampaignLogsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
+        return new Response($this->openApiObj->getCampaignLogsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['cursor']['value'], $allParams['filter']['value'], $allParams['sort']['value']));
     }
 
     /**
@@ -209,5 +275,41 @@ class LogApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->getListLogsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['start_time']['value'], $allParams['end_time']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
+    }
+
+    /**
+     * Operation listCampaignLogExports
+     *
+     * Show all campaign log exports
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$campaign_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\CampaignLogExportsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCampaignLogExports($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'campaign_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'page' => ['value' => "1", 'isOptional' => true],
+                        'per_page' => ['value' => "50", 'isOptional' => true],
+                        'with_count' => ['value' => "false", 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->listCampaignLogExportsWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
     }
 }

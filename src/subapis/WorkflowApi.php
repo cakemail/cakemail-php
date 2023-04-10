@@ -47,6 +47,7 @@ class WorkflowApi
      *                      string <b>$workflow_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
      *                      string <b>$lock_key</b> Locking key, preventing other users from modifying this workflow for a short period. (optional)<br>
+     *                      string <b>$sender_email</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -62,11 +63,12 @@ class WorkflowApi
                         'workflow_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
                         'lock_key' => ['value' => null, 'isOptional' => true],
+                        'sender_email' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->activateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value']));
+        return new Response($this->openApiObj->activateWorkflowWithHttpInfo($allParams['workflow_id']['value'], $allParams['account_id']['value'], $allParams['lock_key']['value'], $allParams['sender_email']['value']));
     }
 
     /**

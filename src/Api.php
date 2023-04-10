@@ -13,6 +13,7 @@ use Cakemail\Subapis\CustomAttributeApi;
 use Cakemail\Subapis\DKIMApi;
 use Cakemail\Subapis\DomainApi;
 use Cakemail\Subapis\FormApi;
+use Cakemail\Subapis\InterestApi;
 use Cakemail\Subapis\LinksApi;
 use Cakemail\Subapis\ListApi;
 use Cakemail\Subapis\LogApi;
@@ -23,6 +24,7 @@ use Cakemail\Subapis\SenderApi;
 use Cakemail\Subapis\SubAccountApi;
 use Cakemail\Subapis\SuppressedEmailApi;
 use Cakemail\Subapis\SystemEmailApi;
+use Cakemail\Subapis\TagsApi;
 use Cakemail\Subapis\TaskApi;
 use Cakemail\Subapis\TemplateApi;
 use Cakemail\Subapis\TokenApi;
@@ -47,6 +49,7 @@ class Api
     public $d_k_i_m;
     public $domain;
     public $form;
+    public $interest;
     public $links;
     public $list;
     public $log;
@@ -57,6 +60,7 @@ class Api
     public $sub_account;
     public $suppressed_email;
     public $system_email;
+    public $tags;
     public $task;
     public $template;
     public $token;
@@ -82,6 +86,7 @@ class Api
         $this->d_k_i_m = new DKIMApi(new Client(), $this->config);
         $this->domain = new DomainApi(new Client(), $this->config);
         $this->form = new FormApi(new Client(), $this->config);
+        $this->interest = new InterestApi(new Client(), $this->config);
         $this->links = new LinksApi(new Client(), $this->config);
         $this->list = new ListApi(new Client(), $this->config);
         $this->log = new LogApi(new Client(), $this->config);
@@ -92,6 +97,7 @@ class Api
         $this->sub_account = new SubAccountApi(new Client(), $this->config);
         $this->suppressed_email = new SuppressedEmailApi(new Client(), $this->config);
         $this->system_email = new SystemEmailApi(new Client(), $this->config);
+        $this->tags = new TagsApi(new Client(), $this->config);
         $this->task = new TaskApi(new Client(), $this->config);
         $this->template = new TemplateApi(new Client(), $this->config);
         $this->token = new TokenApi(new Client(), $this->config);

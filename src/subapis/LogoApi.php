@@ -38,6 +38,34 @@ class LogoApi
 
 
     /**
+     * Operation deleteDefault
+     *
+     * Delete the default logo
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\DeleteLogoResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteDefault($params = [])
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->deleteDefaultLogoWithHttpInfo($allParams['account_id']['value']));
+    }
+
+    /**
      * Operation uploadDefault
      *
      * Upload a default logo

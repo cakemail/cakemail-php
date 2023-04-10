@@ -108,6 +108,7 @@ class SuppressedEmailApi
      *                      int <b>$page</b> (optional, default to 1)<br>
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -124,10 +125,11 @@ class SuppressedEmailApi
                         'page' => ['value' => "1", 'isOptional' => true],
                         'per_page' => ['value' => "50", 'isOptional' => true],
                         'with_count' => ['value' => "false", 'isOptional' => true],
+                        'filter' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listSuppressedEmailsWithHttpInfo($allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value']));
+        return new Response($this->openApiObj->listSuppressedEmailsWithHttpInfo($allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['filter']['value']));
     }
 }

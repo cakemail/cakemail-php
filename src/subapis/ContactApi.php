@@ -38,6 +38,38 @@ class ContactApi
 
 
     /**
+     * Operation addInterestsTo
+     *
+     * Add interest(s) to contact(s)
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\AddInterestsToContacts <b>$add_interests_to_contacts</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\AddInterestsToMultipleContactsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addInterestsTo($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'add_interests_to_contacts' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->addInterestsToContactsWithHttpInfo($allParams['list_id']['value'], $allParams['add_interests_to_contacts']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation create
      *
      * Add a contact
@@ -48,6 +80,7 @@ class ContactApi
      *                      \Cakemail\Lib\Model\Contact <b>$contact</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
      *                      DoubleOptIn <b>$send_double_opt_in</b> (optional)<br>
+     *                      bool <b>$resubscribe</b> (optional, default to true)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -64,11 +97,12 @@ class ContactApi
                         'contact' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
                         'send_double_opt_in' => ['value' => null, 'isOptional' => true],
+                        'resubscribe' => ['value' => "true", 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact']['value'], $allParams['account_id']['value'], $allParams['send_double_opt_in']['value']));
+        return new Response($this->openApiObj->createContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact']['value'], $allParams['account_id']['value'], $allParams['send_double_opt_in']['value'], $allParams['resubscribe']['value']));
     }
 
     /**
@@ -181,7 +215,7 @@ class ContactApi
      *                      string <b>$fiql</b> (optional)<br>
      *                      string <b>$json</b> (optional)<br>
      *                      int <b>$segment_id</b> (optional)<br>
-     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -350,7 +384,7 @@ class ContactApi
     /**
      * Operation listContactsOfList
      *
-     * Show all contacts
+     * Show contacts of a list
      *
      *
      * @param mixed[] $params
@@ -364,7 +398,7 @@ class ContactApi
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$cursor</b> Cursor pagination (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
-     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -398,7 +432,7 @@ class ContactApi
     /**
      * Operation listContactsOfSegment
      *
-     * Show all contacts in a segment
+     * Show contacts of a segment
      *
      *
      * @param mixed[] $params
@@ -413,7 +447,7 @@ class ContactApi
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$cursor</b> Cursor pagination (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
-     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -480,6 +514,105 @@ class ContactApi
     }
 
     /**
+     * Operation removeInterestsFrom
+     *
+     * Remove interest(s) from contact(s)
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\RemoveInterestsFromContacts <b>$remove_interests_from_contacts</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\RemoveInterestsFromMultipleContactsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function removeInterestsFrom($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'remove_interests_from_contacts' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->removeInterestsFromContactsWithHttpInfo($allParams['list_id']['value'], $allParams['remove_interests_from_contacts']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation tag
+     *
+     * Tags a contact
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$contact_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\Tags <b>$tags</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\TagContactResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
+     */
+    public function tag($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'contact_id' => ['value' => null, 'isOptional' => false],
+                        'tags' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->tagContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact_id']['value'], $allParams['tags']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation tagMultiple
+     *
+     * Tags multiple contacts
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\TagMultipleContacts <b>$tag_multiple_contacts</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\TagMultipleContactsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function tagMultiple($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'tag_multiple_contacts' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->tagMultipleContactsWithHttpInfo($allParams['list_id']['value'], $allParams['tag_multiple_contacts']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation unsubscribe
      *
      * Unsubscribe a contact from a list
@@ -509,5 +642,72 @@ class ContactApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->unsubscribeContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation untag
+     *
+     * Untags a contact
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      int <b>$contact_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\Tags <b>$tags</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\UntagContactResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     * @deprecated
+     */
+    public function untag($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'contact_id' => ['value' => null, 'isOptional' => false],
+                        'tags' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->untagContactWithHttpInfo($allParams['list_id']['value'], $allParams['contact_id']['value'], $allParams['tags']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation untagMultiple
+     *
+     * Untags multiple contacts
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$list_id</b> (required)<br>
+     *                      \Cakemail\Lib\Model\UntagMultipleContacts <b>$untag_multiple_contacts</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\UntagMultipleContactsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function untagMultiple($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'list_id' => ['value' => null, 'isOptional' => false],
+                        'untag_multiple_contacts' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->untagMultipleContactsWithHttpInfo($allParams['list_id']['value'], $allParams['untag_multiple_contacts']['value'], $allParams['account_id']['value']));
     }
 }
