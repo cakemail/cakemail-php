@@ -212,10 +212,10 @@ class ContactApi
      *                      int <b>$account_id</b> (optional)<br>
      *                      string <b>$description</b> (optional)<br>
      *                      string <b>$query</b> (optional)<br>
-     *                      string <b>$fiql</b> (optional)<br>
      *                      string <b>$json</b> (optional)<br>
      *                      int <b>$segment_id</b> (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$fiql</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -232,15 +232,15 @@ class ContactApi
                         'account_id' => ['value' => null, 'isOptional' => true],
                         'description' => ['value' => null, 'isOptional' => true],
                         'query' => ['value' => null, 'isOptional' => true],
-                        'fiql' => ['value' => null, 'isOptional' => true],
                         'json' => ['value' => null, 'isOptional' => true],
                         'segment_id' => ['value' => null, 'isOptional' => true],
                         'filter' => ['value' => null, 'isOptional' => true],
+                        'fiql' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->exportContactsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['description']['value'], $allParams['query']['value'], $allParams['fiql']['value'], $allParams['json']['value'], $allParams['segment_id']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->exportContactsWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['description']['value'], $allParams['query']['value'], $allParams['json']['value'], $allParams['segment_id']['value'], $allParams['filter']['value'], $allParams['fiql']['value']));
     }
 
     /**
@@ -394,11 +394,11 @@ class ContactApi
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$query</b> SQL selection query (only use one of query, fiql and json) (optional)<br>
-     *                      string <b>$fiql</b> FIQL selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$cursor</b> Cursor pagination (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$fiql</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -417,16 +417,16 @@ class ContactApi
                         'per_page' => ['value' => "50", 'isOptional' => true],
                         'with_count' => ['value' => "false", 'isOptional' => true],
                         'query' => ['value' => null, 'isOptional' => true],
-                        'fiql' => ['value' => null, 'isOptional' => true],
                         'json' => ['value' => null, 'isOptional' => true],
                         'cursor' => ['value' => null, 'isOptional' => true],
                         'sort' => ['value' => null, 'isOptional' => true],
                         'filter' => ['value' => null, 'isOptional' => true],
+                        'fiql' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listContactsOfListWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['query']['value'], $allParams['fiql']['value'], $allParams['json']['value'], $allParams['cursor']['value'], $allParams['sort']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->listContactsOfListWithHttpInfo($allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['query']['value'], $allParams['json']['value'], $allParams['cursor']['value'], $allParams['sort']['value'], $allParams['filter']['value'], $allParams['fiql']['value']));
     }
 
     /**
@@ -443,11 +443,11 @@ class ContactApi
      *                      int <b>$per_page</b> (optional, default to 50)<br>
      *                      bool <b>$with_count</b> (optional, default to false)<br>
      *                      string <b>$query</b> SQL selection query (only use one of query, fiql and json) (optional)<br>
-     *                      string <b>$fiql</b> FIQL selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$json</b> JSON selection expression (only use one of query, fiql and json) (optional)<br>
      *                      string <b>$cursor</b> Cursor pagination (optional)<br>
      *                      string <b>$sort</b> Sort term and direction, using syntax &#x60;[-|+]term&#x60;.  Valid terms:   - &#x60;id&#x60;   - &#x60;email&#x60;   - &#x60;status&#x60;   - &#x60;subscribed_on&#x60;   - &#x60;last_bounce_type&#x60;   - &#x60;bounces_count&#x60; (optional)<br>
      *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;email&#x60;   - &#x60;tags&#x60;   - &#x60;interests&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *                      string <b>$fiql</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -467,16 +467,16 @@ class ContactApi
                         'per_page' => ['value' => "50", 'isOptional' => true],
                         'with_count' => ['value' => "false", 'isOptional' => true],
                         'query' => ['value' => null, 'isOptional' => true],
-                        'fiql' => ['value' => null, 'isOptional' => true],
                         'json' => ['value' => null, 'isOptional' => true],
                         'cursor' => ['value' => null, 'isOptional' => true],
                         'sort' => ['value' => null, 'isOptional' => true],
                         'filter' => ['value' => null, 'isOptional' => true],
+                        'fiql' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->listContactsOfSegmentWithHttpInfo($allParams['segment_id']['value'], $allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['query']['value'], $allParams['fiql']['value'], $allParams['json']['value'], $allParams['cursor']['value'], $allParams['sort']['value'], $allParams['filter']['value']));
+        return new Response($this->openApiObj->listContactsOfSegmentWithHttpInfo($allParams['segment_id']['value'], $allParams['list_id']['value'], $allParams['account_id']['value'], $allParams['page']['value'], $allParams['per_page']['value'], $allParams['with_count']['value'], $allParams['query']['value'], $allParams['json']['value'], $allParams['cursor']['value'], $allParams['sort']['value'], $allParams['filter']['value'], $allParams['fiql']['value']));
     }
 
     /**

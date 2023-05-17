@@ -45,6 +45,7 @@ class TokenApi
      *
      * @param mixed[] $params
      *                      string <b>$username</b> (required)<br>
+     *                      string <b>$version</b> (optional, default to 'v1')<br>
      *                      PasswordGrantType <b>$grant_type</b> (optional)<br>
      *                      string <b>$password</b> (optional)<br>
      *                      int <b>$account_id</b> (optional)<br>
@@ -63,6 +64,7 @@ class TokenApi
 
         $allParams = [
                         'username' => ['value' => null, 'isOptional' => false],
+                        'version' => ['value' => "'v1'", 'isOptional' => true],
                         'grant_type' => ['value' => null, 'isOptional' => true],
                         'password' => ['value' => null, 'isOptional' => true],
                         'account_id' => ['value' => null, 'isOptional' => true],
@@ -72,7 +74,7 @@ class TokenApi
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->createTokenWithHttpInfo($allParams['username']['value'], $allParams['grant_type']['value'], $allParams['password']['value'], $allParams['account_id']['value'], $allParams['scopes']['value'], $allParams['expiration_seconds']['value']));
+        return new Response($this->openApiObj->createTokenWithHttpInfo($allParams['username']['value'], $allParams['version']['value'], $allParams['grant_type']['value'], $allParams['password']['value'], $allParams['account_id']['value'], $allParams['scopes']['value'], $allParams['expiration_seconds']['value']));
     }
 
     /**
@@ -83,6 +85,7 @@ class TokenApi
      *
      * @param mixed[] $params
      *                      string <b>$refresh_token</b> (required)<br>
+     *                      string <b>$version</b> (optional, default to 'v1')<br>
      *                      RefreshGrantType <b>$grant_type</b> (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
@@ -97,11 +100,12 @@ class TokenApi
 
         $allParams = [
                         'refresh_token' => ['value' => null, 'isOptional' => false],
+                        'version' => ['value' => "'v1'", 'isOptional' => true],
                         'grant_type' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->refreshTokenWithHttpInfo($allParams['refresh_token']['value'], $allParams['grant_type']['value']));
+        return new Response($this->openApiObj->refreshTokenWithHttpInfo($allParams['refresh_token']['value'], $allParams['version']['value'], $allParams['grant_type']['value']));
     }
 }
