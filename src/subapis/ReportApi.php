@@ -38,6 +38,96 @@ class ReportApi
 
 
     /**
+     * Operation createCampaignsReportsExport
+     *
+     * Create a campaigns reports export
+     *
+     *
+     * @param mixed[] $params
+     *                      \Cakemail\Lib\Model\CreateCampaignReportExport <b>$create_campaign_report_export</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\CreateCampaignsReportsExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createCampaignsReportsExport($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'create_campaign_report_export' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->createCampaignsReportsExportWithHttpInfo($allParams['create_campaign_report_export']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation deleteCampaignsReportsExport
+     *
+     * Delete a campaigns report export
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$export_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\DeleteCampaignsReportsExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteCampaignsReportsExport($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'export_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->deleteCampaignsReportsExportWithHttpInfo($allParams['export_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
+     * Operation downloadCampaignsReportsExport
+     *
+     * Download a campaigns reports export
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$export_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\DownloadCampaignsReportsExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function downloadCampaignsReportsExport($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'export_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->downloadCampaignsReportsExportWithHttpInfo($allParams['export_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation getAccount
      *
      * Show account report
@@ -174,6 +264,36 @@ class ReportApi
     }
 
     /**
+     * Operation getCampaignsReportsExport
+     *
+     * Get a campaigns reports export
+     *
+     *
+     * @param mixed[] $params
+     *                      string <b>$export_id</b> (required)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\GetCampaignsReportsExportResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getCampaignsReportsExport($params)
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'export_id' => ['value' => null, 'isOptional' => false],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->getCampaignsReportsExportWithHttpInfo($allParams['export_id']['value'], $allParams['account_id']['value']));
+    }
+
+    /**
      * Operation getEmail
      *
      * Show transactional email report
@@ -263,5 +383,39 @@ class ReportApi
         $allParams = $this->fillParams($params, $allParams);
 
         return new Response($this->openApiObj->getSelfAccountStatsWithHttpInfo($allParams['start_time']['value'], $allParams['end_time']['value']));
+    }
+
+    /**
+     * Operation listCampaignsReportsExports
+     *
+     * List campaigns reports exports
+     *
+     *
+     * @param mixed[] $params
+     *                      int <b>$page</b> (optional, default to 1)<br>
+     *                      int <b>$per_page</b> (optional, default to 50)<br>
+     *                      int <b>$account_id</b> (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;status&#x60;   - &#x60;progress&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
+     *
+     * @throws \Cakemail\Lib\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Cakemail\Lib\Model\ListCampaignsReportsExportsResponse|\Cakemail\Lib\Model\HTTPBadRequestError|\Cakemail\Lib\Model\HTTPValidationError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function listCampaignsReportsExports($params = [])
+    {
+        if (gettype($params) != 'array' && gettype($params) != 'NULL') {
+            throw new ApiException('Parameter must be an array');
+        }
+
+        $allParams = [
+                        'page' => ['value' => "1", 'isOptional' => true],
+                        'per_page' => ['value' => "50", 'isOptional' => true],
+                        'account_id' => ['value' => null, 'isOptional' => true],
+                        'filter' => ['value' => null, 'isOptional' => true],
+                    ];
+
+        $allParams = $this->fillParams($params, $allParams);
+
+        return new Response($this->openApiObj->listCampaignsReportsExportsWithHttpInfo($allParams['page']['value'], $allParams['per_page']['value'], $allParams['account_id']['value'], $allParams['filter']['value']));
     }
 }

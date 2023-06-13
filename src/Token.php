@@ -16,7 +16,7 @@ class Token
     {
         $configuration = Configuration::getDefaultConfiguration();
         $this->_tokenApi =  new TokenApi(new Client(), $configuration);
-        $token = $this->_tokenApi->createToken($username, 'password', $password);
+        $token = $this->_tokenApi->createToken($username, 'v1', 'password', $password);
 
         $this->accessToken = $token->getAccessToken();
         $this->refreshToken = $token->getRefreshToken();
@@ -25,7 +25,7 @@ class Token
 
     public function refresh()
     {
-        $response = $this->_tokenApi->refreshToken('refresh_token', $this->refreshToken);
+        $response = $this->_tokenApi->refreshToken($this->refreshToken, 'v1', 'refresh_token');
 
         $this->accessToken = $response->getAccessToken();
         $this->refreshToken = $response->getRefreshToken();

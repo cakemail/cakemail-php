@@ -47,6 +47,7 @@ class LogApi
      *                      int <b>$campaign_id</b> (required)<br>
      *                      int <b>$account_id</b> (optional)<br>
      *                      string <b>$description</b> (optional)<br>
+     *                      string <b>$filter</b> Valid Terms:   - &#x60;additional_info&#x60;   - &#x60;link_id&#x60;   - &#x60;contact_id&#x60;   - &#x60;email&#x60;   - &#x60;uniques&#x60;   - &#x60;group_by_contact&#x60;   - &#x60;log_id&#x60;   - &#x60;totals&#x60;   - &#x60;type&#x60;  Valid Operators:   - &#x60;&#x3D;&#x3D;&#x60;  Query separator:   - &#x60;;&#x60; (optional)<br>
      *
      * @throws \Cakemail\Lib\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -62,11 +63,12 @@ class LogApi
                         'campaign_id' => ['value' => null, 'isOptional' => false],
                         'account_id' => ['value' => null, 'isOptional' => true],
                         'description' => ['value' => null, 'isOptional' => true],
+                        'filter' => ['value' => null, 'isOptional' => true],
                     ];
 
         $allParams = $this->fillParams($params, $allParams);
 
-        return new Response($this->openApiObj->campaignLogExportCreateWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['description']['value']));
+        return new Response($this->openApiObj->campaignLogExportCreateWithHttpInfo($allParams['campaign_id']['value'], $allParams['account_id']['value'], $allParams['description']['value'], $allParams['filter']['value']));
     }
 
     /**
