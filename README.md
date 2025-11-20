@@ -1,3 +1,16 @@
+## ⚠️ Deprecation Notice
+
+**This repository is no longer maintained and should not be used in production environments.**
+
+We recommend migrating to our official **Ng-API** for programmatic access to Cakemail services. 
+
+**Documentation and migration guide:** [https://cakemail.dev](https://cakemail.dev)
+
+---
+
+
+
+
 # Install
 
 Install the `cakemail` package using `composer`
